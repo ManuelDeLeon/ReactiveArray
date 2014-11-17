@@ -2,6 +2,7 @@
 #meteor remove mike:mocha
 git add .
 git commit -am "Pushing to reactivearray.meteor.com"
+git push
 meteor deploy reactivearray.meteor.com
 #meteor add mike:mocha
 #meteor add velocity:html-reporter
