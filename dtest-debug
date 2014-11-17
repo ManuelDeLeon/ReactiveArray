@@ -1,0 +1,5 @@
+# mrt remove velocity-html-reporter
+git add .
+git commit -am "Pushing to reactivearray.meteor.com"
+meteor deploy reactivearray.meteor.com --debug
+# mrt add velocity-html-reporter

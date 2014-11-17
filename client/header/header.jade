@@ -1,0 +1,26 @@
+template(name='header')
+  #top-header.navbar.navbar-fixed-top
+    .navbar-inner
+      .container(style='width: auto;')
+        a.brand(href='#problemBk') ReactiveArray
+        ul.nav(role='navigation')
+          li.dropdown
+            a#drop1.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+              | Examples
+              b.caret
+            ul.dropdown-menu(role='menu')
+              li(role='presentation')
+                a(role='menuitem', tabindex='-1', href='#listExBk') List
+
+          li.dropdown
+            a#drop2.dropdown-toggle(href='#', role='button', data-toggle='dropdown')
+              | Methods
+              b.caret
+            ul.dropdown-menu(role='menu')
+              li(role='presentation')
+                a(role='menuitem', tabindex='-1', href='#listBk') list
+
+
+        ul.nav.pull-right(role='navigation')
+          li
+            a(href='mailto:manueldeleon@gmail.com') Feedback

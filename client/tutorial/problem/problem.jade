@@ -1,0 +1,29 @@
+template(name='problem')
+  a.bookmark(id='problemBk')
+  .section
+    h1.text-center Reactive Array
+    p This package provides a thin wrapper around the Array class to make it reactive. That means you can put your array inside a Tracker.autorun or a template helper and your app will be updated when items are added or removed from the array.
+
+    h2 Install
+    pre meteor add manuel:reactivearray
+
+    h2 Quick Usage
+    ul.nav.nav-pills
+      li.active
+        a(href="#problem-coffee", data-toggle="tab") Coffeescript
+      li
+        a(href="#problem-js", data-toggle="tab") Javascript
+    div.tab-content
+      div#problem-coffee.tab-pane.fade.active.in
+        pre.
+          array = new ReactiveArray()
+          Template.users.helpers
+            nameList: -> array.list()
+      div#problem-js.tab-pane.fade
+        pre.
+          var array = new ReactiveArray();
+          Template.users.helpers({
+            nameList: function() {
+              return array.list();
+            }
+          });

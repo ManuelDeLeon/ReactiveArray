@@ -1,0 +1,6 @@
+rm -fr .meteor/local/*
+sudo mount -t tmpfs tmpfs .meteor/local
+rm -fr packages/*
+sudo mount -t tmpfs tmpfs packages
+# mrt update
+# mrt
