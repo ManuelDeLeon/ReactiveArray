@@ -1,12 +1,13 @@
 Package.describe({
+  name: "manuel:reactivearray",
   summary: "Reactive Array for Meteor",
-  version: "1.0.0",
+  version: "1.0.1",
   git: "https://github.com/ManuelDeLeon/ReactiveArray"
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('METEOR@0.9.2.2');
-    api.use('coffeescript', ['client', 'server']);
+  api.versionsFrom('METEOR@1.0');
+    api.use('coffeescript');
     api.addFiles(['ReactiveArray.coffee'], 'client');
     api.export('ReactiveArray');
 });
