@@ -1,11 +1,26 @@
 class ReactiveArray extends Array
   isArray = (obj) -> obj instanceof Array
-  dep = null
-  pause = false
-  changed = ->
-    dep.changed() if dep and not pause
 
   constructor: (p1, p2) ->
+    dep = null
+    pause = false
+    delayed = { }
+    delay = (time, nameOrFunc, fn) ->
+      func = fn || nameOrFunc
+      name = nameOrFunc if fn
+      d = delayed[name] if name
+      Meteor.clearTimeout d if d?
+      id = Meteor.setTimeout func, time
+      delayed[name] = id if name
+
+    @changed = ->
+      if dep and not pause
+        delay 1, 'change', ->
+          dep.changed()
+          
+    @depend = ->
+      dep.depend()
+    
     if isArray p1
       for item in p1
         @push item
@@ -16,42 +31,44 @@ class ReactiveArray extends Array
     if not (dep instanceof Tracker.Dependency)
       dep = new Tracker.Dependency()
 
+    @pause = -> pause = true
+    @resume = ->
+      pause = false
+      @changed()
+
   array: ->
-    dep.depend()
+    @depend()
     Array.prototype.slice.call @
 
   list: ->
-    dep.depend()
+    @depend()
     @
 
   depend: ->
-    dep.depend()
+    @depend()
     @
 
   push: ->
     item = super
-    changed()
+    @changed()
     item
 
   unshift: ->
     item = super
-    changed()
+    @changed()
     item
 
   pop: ->
     item = super
-    changed()
+    @changed()
     item
 
   shift: ->
     item = super
-    changed()
+    @changed()
     item
 
-  pause: -> pause = true
-  resume: ->
-    pause = false
-    changed()
+
 
   remove: (valueOrPredicate) ->
     underlyingArray = @
@@ -65,12 +82,12 @@ class ReactiveArray extends Array
         underlyingArray.splice i, 1
         i--
       i++
-    changed() if removedValues.length
+    @changed() if removedValues.length
     removedValues
 
   clear: ->
     @pop() while @length
-    changed()
+    @changed()
     @
 
   concat: ->
@@ -83,28 +100,28 @@ class ReactiveArray extends Array
     new ReactiveArray ret
 
   indexOf: ->
-    dep.depend()
+    @depend()
     super
 
   join: ->
-    dep.depend()
+    @depend()
     super
 
   lastIndexOf: ->
-    dep.depend()
+    @depend()
     super
 
   reverse: ->
     super
-    changed()
+    @changed()
     @
 
   sort: ->
     super
-    changed()
+    @changed()
     @
 
   splice: ->
     ret = super
-    changed()
+    @changed()
     ret

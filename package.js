@@ -1,7 +1,7 @@
 Package.describe({
   name: "manuel:reactivearray",
   summary: "Reactive Array for Meteor",
-  version: "1.0.2",
+  version: "1.0.3",
   git: "https://github.com/ManuelDeLeon/ReactiveArray"
 });
 
