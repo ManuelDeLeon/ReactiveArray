@@ -4,19 +4,10 @@ class ReactiveArray extends Array
   constructor: (p1, p2) ->
     dep = null
     pause = false
-    delayed = { }
-    delay = (time, nameOrFunc, fn) ->
-      func = fn || nameOrFunc
-      name = nameOrFunc if fn
-      d = delayed[name] if name
-      Meteor.clearTimeout d if d?
-      id = Meteor.setTimeout func, time
-      delayed[name] = id if name
 
     @changed = ->
       if dep and not pause
-        delay 1, 'change', ->
-          dep.changed()
+        dep.changed()
           
     @depend = ->
       dep.depend()
