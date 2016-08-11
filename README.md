@@ -19,7 +19,7 @@ var names = new ReactiveArray(['Tom', 'Dick', 'Harry']);
 
 ## List Example
 
-![ReactiveArray list example](https://lh6.googleusercontent.com/pfN6_yRc_5PrsRKaImq3-LQzx4wOGF0U4rnJtYn88VUY4No1ln207OsPxGipXNtuHQvaRZCPN2hEGwA=w1680-h951)
+![ReactiveArray list example](https://cloud.githubusercontent.com/assets/192261/17591107/f83fce54-5fb2-11e6-8469-9a499e0c5762.png)
 
 ### Code
 
