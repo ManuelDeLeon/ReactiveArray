@@ -1,5 +1,5 @@
 class ReactiveArray extends Array
-  isArray = (obj) -> obj instanceof Array
+  isArray = (obj) -> obj instanceof Array or Array.isArray(obj)
 
   constructor: (p1, p2) ->
     dep = null
@@ -73,12 +73,10 @@ class ReactiveArray extends Array
         underlyingArray.splice i, 1
         i--
       i++
-    @changed() if removedValues.length
     removedValues
 
   clear: ->
     @pop() while @length
-    @changed()
     @
 
   concat: ->
