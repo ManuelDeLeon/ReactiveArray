@@ -4,14 +4,15 @@ class ReactiveArray extends Array
   constructor: (p1, p2) ->
     dep = null
     pause = false
+    super arguments...
 
     @changed = ->
       if dep and not pause
         dep.changed()
-          
+
     @depend = ->
       dep.depend()
-    
+
     if isArray p1
       for item in p1
         @push item
@@ -40,22 +41,22 @@ class ReactiveArray extends Array
     @
 
   push: ->
-    item = super
+    item = super arguments...
     @changed()
     item
 
   unshift: ->
-    item = super
+    item = super arguments...
     @changed()
     item
 
   pop: ->
-    item = super
+    item = super arguments...
     @changed()
     item
 
   shift: ->
-    item = super
+    item = super arguments...
     @changed()
     item
 
@@ -90,27 +91,27 @@ class ReactiveArray extends Array
 
   indexOf: ->
     @depend()
-    super
+    super arguments...
 
   join: ->
     @depend()
-    super
+    super arguments...
 
   lastIndexOf: ->
     @depend()
-    super
+    super arguments...
 
   reverse: ->
-    super
+    super arguments...
     @changed()
     @
 
   sort: ->
-    super
+    super arguments...
     @changed()
     @
 
   splice: ->
-    ret = super
+    ret = super arguments...
     @changed()
     ret
