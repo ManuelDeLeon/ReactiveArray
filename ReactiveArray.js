@@ -3,7 +3,7 @@ ReactiveArray = function(p1, p2) {
   var dep, item, j, len, pause;
   dep = null;
   pause = false;
-  _this = Array.apply(this, arguments) || this;
+  _this = Array.apply(this, []);
   _this.changed = function() {
     if (dep && !pause) {
       return dep.changed();
